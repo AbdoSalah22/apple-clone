@@ -1,0 +1,1098 @@
+/* Global */
+@font-face {
+    font-family: appleFont;
+    src: url(../fonts/SFPRODISPLAYREGULAR.OTF);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 10px;
+    font-family: appleFont, sans-serif;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+.container{
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 2.2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container{
+    display: flex;
+}
+
+
+
+/* Header */
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    height: 4.4rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(2rem);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.nav-item {
+    margin-right: 30px;
+    position: relative;
+}
+
+.nav-link,
+.nav-link-button {
+    color: #fff;
+    font-size: 1.6rem;
+    padding: 0 1rem;
+    transition: opacity 0.5s, color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+.nav-link-apple,
+.nav-link-search {
+    width: 1.6rem;
+    height: 4.4rem;
+    background: url("../images/icons/apple.svg") center no-repeat;
+}
+
+.nav-link-search {
+    background: url("../images/icons/search.svg") center no-repeat;
+}
+
+.nav-link-button {
+    height: 2.5rem;
+    width: 5.9rem;
+    border: none;
+    border-radius: 30px;
+    margin: 0 auto;
+    background-color: #fafafa;
+}
+
+.dropdown {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 20px;
+    font-size: 2.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s, max-height 0.5s;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown p {
+    color: white;
+    font-size: 1.5rem;
+    margin: 10px;
+    margin-left: 10px;
+}
+
+.nav-item:hover .dropdown {
+    visibility: visible;
+    opacity: 1;
+    max-height: 600px;
+}
+
+.dropdown-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 0;
+    transition: background-color 0.9s ease-in-out;
+    transition: border-radius 0.01s ease-in-out;
+}
+
+.dropdown-link:hover {
+    background-color: #424245;
+    border-radius: 10px;
+}
+
+.inner-dropdown {
+    background-color: red;
+    visibility: hidden;
+    position: absolute;
+    width: 45%;
+    height: 75%;
+    padding: 10px;
+    font-size: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s, max-height 0.5s;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 2;
+    top: 10%;
+    left: 42%;
+}
+
+.inner-dropdown a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.6rem;
+}
+
+.inner-dropdown a:hover {
+    background-color: #ccc;
+    border-radius: 3px;
+    padding-left: 3px;
+}
+
+.inner-dropdown-link:hover + .inner-dropdown,
+.inner-dropdown:hover {
+    background-color: white;
+    visibility: visible;
+    opacity: 0.9;
+}
+
+
+
+
+/* Login */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+}
+
+#loginButton {
+    color: #1d1d1f;
+}
+
+.login-box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    z-index: 1000;
+}
+
+.login-form {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-form h2 {
+    color: #1d1d1f;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    text-align: left;
+    display: block;
+    color: #1d1d1f;
+    margin-left: 5px;
+    margin-bottom: 1px;
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    background-color: #007BFF;
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+.login-box .login-logo{
+    margin: 10px;
+}
+
+.login-box .close-button{
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: bold;
+    align-items:end;
+}
+
+.login-box p{
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #0056b3;
+}
+
+
+
+
+/*Index Landing Section*/
+.index-section{
+    background-color: black;
+    margin-top: 1.4rem;
+}
+
+.index-section .title{
+    font-weight: 300;
+    text-align: center;
+    padding-top: 6rem;
+}
+
+.index-section .title-heading{
+    color:beige;
+    font-size: 5.5rem;
+    font-weight: 600;
+}
+
+.index-section .title-sub-heading{
+    color:beige;
+    font-size: 3rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    font-weight: 300;
+}
+
+.index-section .title-image{
+    width: 100%;
+    height: 30rem;
+    margin: 0 auto;
+    background: url("../images/iphone15propromo2jpg.png") center no-repeat;
+    background-size: cover;
+}
+
+.cta{
+    text-align: center;
+    margin-top: 0.2rem;
+}
+
+.cta-link{
+    color: #0066eb;
+    font-size: 2.1rem;
+    font-weight: 200;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
+}
+
+.cta-link:hover{
+    text-decoration: underline;
+}
+
+.index-button{
+    margin: 10px;
+}
+
+
+
+
+/*Index Watch Section*/
+.index-watch{
+    position: relative;
+    margin-top: 1.4rem;
+    background: url("../images/doubletap.webp") center no-repeat;
+    background-color: black;
+    background-size: cover;
+}
+
+.watch-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    text-align: center;
+    color: white;
+}
+
+.watch-overlay h5{
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+}
+
+.watch-overlay p{
+    font-size: 2.5rem;
+}
+
+.watch-button{
+    height: 4.2rem;
+    width: 12.5rem;
+    font-size: 1.6rem;
+    border: none;
+    border-radius: 30px;
+    margin: 10px auto;
+}
+
+
+
+
+/* Extra Index Sections */
+.upper-section {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.upper-section .title-heading{
+    color: #1d1d1f;
+    font-size: 4rem;
+}
+
+.upper-section .title-sub-heading{
+    color: #1d1d1d;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.left-container, .right-container {
+    flex: 1;
+    box-sizing: border-box;
+    border: 0.6rem solid #fff;
+    background-color: #fafafa;
+    padding-top: 0.6rem;
+}
+
+.macbookpro .title-image{
+    width: 100%;
+    height: 30rem;
+    margin: 0 auto;
+    background: url("../images/macbookpro2.webp") center no-repeat;
+    background-size: contain;
+}
+
+.iphone15 .title-image{
+    width: 100%;
+    height: 30rem;
+    margin: 0 auto;
+    background: url("../images/iphone15promo.png") center no-repeat;
+    background-size: cover;
+}
+
+.ultra2 .title-image{
+    width: 100%;
+    height: 30rem;
+    margin: 0 auto;
+    background: url("../images/watchultra2.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.right-container-tvplus{
+    background: url("../images/appletv.webp") center no-repeat;
+    background-size: cover;
+    flex: 1;
+    box-sizing: border-box;
+    border: 0.6rem solid #fff;
+    background-color: #fafafa;
+}
+
+
+/* Moved to bottom to adjust some index section */
+.hero{
+    height:69.2rem;
+    background-size: auto 73.6rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 0.6rem solid #fff;
+    border-bottom: 0.6rem solid #fff;
+}
+
+.index-section{
+    border-top: none;
+}
+
+
+
+
+/* Footer */
+footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.footer-columns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-column {
+    text-align: left;
+    padding: 10px;
+}
+
+.footer-column h3 {
+    color: #1d1d1f;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    display: block;
+    margin-bottom: 5px;
+    color: #424245;
+    text-decoration: none;
+    font-weight: 200;
+}
+
+footer p{
+    margin: 5px;
+    color: #424245;
+    font-weight: 200;
+}
+
+
+
+/* Signup */
+.signup-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.signup-form {
+    width: 100%;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.signup-form h2 {
+    color: #1d1d1f;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.signup-form label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #424245;
+    text-align: left;
+}
+
+.signup-form input, .signup-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.signup-form button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signup-form button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Mac Page */
+.mac-page-top {
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff; /* Optional: Add a background color for better visibility */
+    padding: 6rem;
+    padding-top: 10rem;
+}
+
+.mac-page-top .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mac-page-top .title-heading{
+    font-weight: bold;
+    font-size: 8rem;
+}
+
+.mac-page-top .title-sub-heading{
+    font-weight: 600;
+    font-size: 2.8rem;
+}
+
+.mac-video{
+    margin-top: 10px;
+    background-size: cover;
+}
+
+.mac-section{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    overflow: hidden;
+    background-color: black;
+}
+
+.mac-section video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.mac-section h2{
+    text-align: center;
+    position: relative;
+    color: white;
+    font-size: 6rem;
+    margin: 30px;
+}
+
+.mac-section p{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    color: white;
+    font-size: 3rem;
+}
+
+.chip-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chip-images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.chip-images img {
+    width: 100%;
+    margin: 40px;
+}
+
+.mac-products{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+
+.mac-product{
+    color: #1d1d1f;
+    text-align: center;
+    background-color: #eeeeee;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.essentials h1{
+    font-size: 5rem;
+    margin: 5rem 12rem;
+    color: #1d1d1f;
+}
+
+.mac-product h2{
+    font-size: 2.8rem;
+}
+
+.mac-product h4, .cta-link{
+    font-size: 1.8rem;
+}
+
+.mac-product .title-image-airpods{
+    width: 100%;
+    height: 32rem;
+    margin: 0 auto;
+    background: url("../images/airpodsmax.png") center no-repeat;
+    background-size: contain;
+}
+
+.mac-product .title-image-display{
+    width: 100%;
+    height: 32rem;
+    margin: 0 auto;
+    background: url("../images/studiodisplay.png") center no-repeat;
+    background-size: cover;
+}
+
+
+
+/* iPad Page  */
+.ipad-container {
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.ipad-container img{
+    padding-top: 50px;
+    width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.ipad-text {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(10%, -50%);
+}
+
+.ipad-container h2, .ipad-pro-container h2{
+    font-size: 5rem;
+}
+
+.buy-button{
+    background-color: #0066eb;
+    font-size: 1.8rem;
+    width: 7rem;
+    height:4rem;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover{
+    background-color: #0056b3;
+}
+
+.ipad-container p, .ipad-pro-container p{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.ipad-pro-container {
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+.ipad-pro-container img{
+    width: 100%;
+}
+
+.ipad-pro-text {
+    color: white;
+    position: absolute;
+    transform: translate(40%, -220%);
+}
+
+.ipad-columns{
+    display: grid;
+    align-items: stretch;
+    gap: 5px;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: center;
+    margin: 0px 50px;
+}
+
+.ipad-column{
+    text-align: center;
+    background-color: #eeeeee;
+    margin: 0 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.ipad-column img{
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.ipad-column .title-heading{
+    font-size: 2.5rem;
+}
+
+.ipad-column .title-sub-heading{
+    font-size: 1.5rem;
+    margin: 20px;
+}
+
+
+
+
+/* iPhone Page */
+.iphone-page-section {
+    background-color: black;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.iphone-page-section-light {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.iphone-page-section, .iphone-page-section-light {
+    border-bottom: 1rem solid #fafafa;
+}
+
+.iphone-page-section h3{
+    color: beige;
+    font-size: 3rem;
+    margin: 5px;
+}
+
+.iphone-page-section h2{
+    color: rgb(131, 131, 92);
+    font-size: 6rem;
+    font-weight: 400;
+}
+
+.iphone-page-section h4{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 10px;
+}
+
+.iphone-page-section .title-image{
+    width: 80%;
+    height: 45rem;
+    margin: auto;
+    background: url("../images/iphone15hero.png") center no-repeat;
+    background-size: cover;
+    position: top;
+}
+
+.iphone-page-section-light h4{
+    color: black;
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 10px;
+}
+
+.iphone-page-section-light .title-image{
+    width: 100%;
+    height: 40rem;
+    margin: 0;
+    background: url("../images/iphone15cover3.jpg") center no-repeat;
+    background-size: contain;
+}
+
+.iphone-page-section-light .title-image-se{
+    width: 100%;
+    height: 50rem;
+    margin: 0;
+    background: url("../images/iphonesecover.png") center no-repeat;
+    background-size: cover;
+}
+
+.acc-container {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.left-div,
+.right-div {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: auto;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.acc-container h2{
+    color: #1d1d1f;
+    font-size: 5.6rem;
+    margin: 10px;
+}
+
+.acc-container h4{
+    color: #1d1d1f;
+    font-size: 2.8rem;
+    font-weight: 200;
+    max-width: 60%;
+    margin: auto;
+}
+
+/* iPhone 15 Pro Page */
+.iphone15pro-section{
+    padding-top: 100px;
+    width: 100%;
+    height: 55rem;
+    margin: 0;
+    background: url("../images/iphone15prointrophoto.jpg") center no-repeat;
+    background-color: black;
+    text-align: center;
+}
+
+.iphone15pro-section .buy-button{
+    transform: translate(0, 750%);
+}
+
+.iphone15pro-section p{
+    transform: translate(0, 1400%);
+    font-size: 2rem;
+    color: white;
+}
+
+.iphone15pro-section-2{
+    margin: auto;
+    padding: 30px;
+    background-color: black;
+}
+
+.iphone15pro-section-2 .container{
+    justify-content: center;
+    align-items: center;
+}
+
+.iphone15pro-section-2 p{
+    font-size: 3rem;
+    color: #ccc;
+}
+
+
+
+
+/* Watch Page */
+.watch-page-section{
+    background-color: black;
+    padding-top: 30px;
+    border-bottom: 2rem solid #fafafa;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.watch-page-section h2{
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.watch-page-section h4{
+    color: white;
+    font-size: 2rem;
+    font-weight: 200;
+    margin: 20px;
+}
+
+.watch-page-section p{
+    margin: 0;
+    color: red;
+    font-size: 2rem;
+}
+
+.watch-page-section .title-image{
+    width: 100%;
+    height: 55rem;
+    margin: 0;
+    background: url("../images/watchseries9.jpg") center no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.watch-page-section-light{
+    background-color: white;
+    border-bottom: 2rem solid #fafafa;
+    text-align: center;
+}
+
+.watch-page-section-light h2{
+    color: black;
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 20px;
+}
+
+.watch-page-section-light h4{
+    color: black;
+    font-size: 2rem;
+    font-weight: 400;
+    margin: 20px;
+}
+
+.watch-page-section-light .title-image{
+    width: 100%;
+    height: 55rem;
+    margin: 0;
+    background: url("../images/watchultra2.jpg") center no-repeat;
+    background-size: contain;
+}
+
+
+
+
+/* AirPods Page */
+.airpods-section{
+    position: relative;
+    margin: 100px auto;
+}
+
+.airpods-div, .airpods-div-2, .airpods-div-3, .airpods-div-4{
+    position: relative;
+    width: 80%;
+    height: 800px;
+    border-radius: 30px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("../images/airpodspro2ndgenpne.png") center no-repeat;
+    background-size: cover;
+}
+
+.airpods-div-2{
+    background: url("../images/airpods3rdgennew.jpg") center no-repeat;
+    background-size: cover;
+}
+
+.airpods-div-3{
+    background: url("../images/airpods2ndgennew.png") center no-repeat;
+    background-size: cover;
+}
+
+.airpods-div-4{
+    background: url("../images/airpodsmaxnew.jpeg") center no-repeat;
+    background-size: cover;
+}
+
+.airpods-text {
+    color: #1d1d1f;
+    text-align: center;
+    font-size: 8rem;
+}
+
+.airpods-text p{
+    color: black;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+
+
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 0;
+}
+
+#scrollPath,
+#progressbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
+
+#progressbar {
+    background: linear-gradient(to top, #008aff, #00ffe7);
+    animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+    0%, 100% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+#progressbar:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #008aff, #00ffe7)
+    ;
+    filter: blur(10px);
+}
+
+#progressbar::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, #008aff, #00ffe7)
+    ;
+    filter: blur(30px);
+}
